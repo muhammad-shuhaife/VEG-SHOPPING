@@ -1,0 +1,54 @@
+<html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Category</title>
+</head>
+<body>
+ <form method="post" action="{% url 'updateproduct' dataid=datas.id %}" enctype="multipart/form-data">
+{% csrf_token %}
+                    <div class="form-group">
+                      <label for="exampleInputEmail3">Product name</label>
+                      <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Product name" value="{{datas.Name}}" name="name">
+                    </div>
+                       <div class="form-group">
+                      <label>Price</label>
+                      <input type="text" class="form-control" id="exampleInputName2" placeholder="price" value="{{datas.Price}}"name="price" >
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword4">Quantity</label>
+                      <input type="text" class="form-control" id="exampleInputPassword4" placeholder="Quantity" value="{{datas.Quantity}}"name="quantity">
+                    </div>
+                        <div class="form-group">
+                      <label for="exampleInputPassword4">Description</label>
+                      <input type="text" class="form-control" id="exampleInputPassword5" placeholder="Description" value="{{datas.Description}}" name="description" >
+                    </div>
+                   <div class="form-group">
+                      <label for="exampleSelectGender">Category</label>
+                        <select class="form-control"  name="category" id="exampleSelectGender">
+                          <option>select...</option>
+                            {% for d in da %}
+                          <option>{{d.Name}}</option>
+                            {% endfor %}
+                        </select>
+                      </div>
+                   <div>
+                       <img src="{{datas.Image.url}}" height="200px" width="200px">
+                       <input type="file" name="image">
+                        </span>
+                      </div>
+<div>
+                    <button onclick="alertmsg()" type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+    </div>
+     </form>
+<script>
+        function alertmsg(){
+            window.alert("Edited Successfully")
+        }
+    </script>
+</body>
+</html>
+{% endblock %}

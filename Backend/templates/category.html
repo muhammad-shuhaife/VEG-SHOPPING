@@ -1,0 +1,36 @@
+<html>
+{% extends 'index.html' %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>category</title>
+</head>
+<body>
+<h4 class="card-title">Add products</h4>
+ <form method="post" action="{% url 'savecategory' %}" enctype="multipart/form-data">
+{% csrf_token %}
+     <div class="form-group">
+     <label for="exampleInputEmail3">Category name</label>
+     <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Category name" name="name">
+ </div>
+     <div class="form-group">
+     <label for="exampleInputEmail3">Description</label>
+     <input type="text" class="form-control" id="exampleInputEmail" placeholder="Description" name="description">
+ </div>
+   <div>
+       <input type="file" name="image">
+   </div>
+<div>
+  <button type="submit" class="btn btn-primary mr-2">Submit</button>
+    <button onclick="alertmsg()" class="btn btn-light">Cancel</button></div>
+ </form>
+ <script>
+        function alertmsg(){
+            window.alert("danger...")
+        }
+    </script>
+</body>
+</html>
+{% endblock %}

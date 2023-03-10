@@ -1,0 +1,62 @@
+<html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>view Admin</title>
+</head>
+<body>
+
+<div class="table-responsive">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>
+                          Name
+                          </th>
+                          <th>
+                            Email
+                          </th>
+                             <th>
+                            Username
+                          </th>
+                             <th>
+                            Password
+                          </th>
+                          <th>
+                           Image
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for d in data %}
+                      <tr>
+                    <td>{{d.Name}}</td>
+                    <td>{{d.Email}}</td>
+                    <td>{{d.Username}}</td>
+                    <td>{{d.Password}}</td>
+                   <td>
+                       <img src="{{d.Image.url}}">
+                            </td>
+                            <td>
+                                <form action="{% url 'editadmin' dataid=d.id %}">
+                               <button type="submit" class="btn btn-success">Edit</button>
+                                </form>
+                                 <form action="{% url 'deleteadmin' dataid=d.id %}">
+                               <button onclick="alertmsg()" type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                          </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+<script>
+        function alertmsg(){
+            window.alert("Deleted Successfully")
+        }
+    </script>
+</body>
+</html>
+{% endblock %}

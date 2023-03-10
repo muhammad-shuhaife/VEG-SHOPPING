@@ -1,0 +1,54 @@
+<html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>view category</title>
+</head>
+<body>
+
+<div class="table-responsive">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>
+                          Category name
+                          </th>
+                          <th>
+                            Description
+                          </th>
+                          <th>
+                           Image
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for d in data %}
+                      <tr>
+                    <td>{{d.Name}}</td>
+                    <td>{{d.Description}}</td>
+                   <td>
+                       <img src="{{d.Image.url}}">
+                            </td>
+                            <td>
+                                <form action="{% url 'editcategory' dataid=d.id %}">
+                               <button type="submit" class="btn btn-success">Edit</button>
+                                </form>
+                                 <form action="{% url 'deletecategory' dataid=d.id %}">
+                               <button onclick="alertmsg()"  type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                          </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+<script>
+        function alertmsg(){
+            window.alert("Deleted Successfully")
+        }
+    </script>
+</body>
+</html>
+{% endblock %}
